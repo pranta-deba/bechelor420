@@ -1,0 +1,76 @@
+:root{
+    --white-color:                  #ffffff;
+    --primary-color:                #13547a;
+    --secondary-color:              #80d0c7;
+    --section-bg-color:             #f0f8ff;
+    --custom-btn-bg-color:          #80d0c7;
+    --custom-btn-bg-hover-color:    #13547a;
+    --dark-color:                   #000000;
+    --p-color:                      #717275;
+    --border-color:                 #7fffd4;
+    --link-hover-color:             #13547a;
+}
+
+.anima {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.anima div {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0.5rem;
+    animation: loading 2.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+
+    0%,
+    100% {
+        transform: scale(0.2);
+        background-color: #0ddcf8;
+    }
+
+    42% {
+        background-color: #5d4da6;
+    }
+
+    50% {
+        transform: scale(1);
+        background-color: #42b58fb8;
+    }
+}
+
+    .anima div:nth-child(0) {
+    animation-delay: 0s;
+}
+
+.anima div:nth-child(1) {
+    animation-delay: 0.2s;  
+}
+
+.anima div:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.anima div:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.anima div:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+.anima div:nth-child(5) {
+    animation-delay: 1s;
+}
+
+/* Main content styles */
+#main-content {
+    display: none;
+}
+
