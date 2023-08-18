@@ -1,3 +1,12 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+};
+require "php/dbConfig.php";
+
+
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -15,6 +24,7 @@
     <link href="css/bootstrap-icons.css" rel="stylesheet">
     <link href="css/templatemo-topic-listing.css" rel="stylesheet">
     <link rel="stylesheet" href="css/customize.css">
+    <link rel="stylesheet" href="css/lefttoright.css">
 </head>
 
 <body id="top">
@@ -51,6 +61,9 @@
 
 
         <!-- form start  -->
+        <?php
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        } else { ?>
         <section class="featured-section">
             <div class="container">
                 <div class="row justify-content-center">
@@ -98,6 +111,7 @@
                 </div>
             </div>
         </section>
+        <?php }; ?>
         <!-- form end  -->
 
 

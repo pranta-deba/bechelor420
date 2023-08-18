@@ -5,9 +5,15 @@
             <span>Bechelor</span>
         </a>
 
-        <div class="d-lg-none ms-auto me-4">
-            <a href="signup.php" class="fw-bold signupp">Sign Up</a>
-        </div>
+        <?php
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        } else { ?>
+            <div class="d-lg-none ms-auto me-4">
+                <a href="signup.php" class="fw-bold signupp">Sign Up</a>
+            </div>
+
+        <?php }; ?>
+
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -29,25 +35,35 @@
                 <li class="nav-item">
                     <a class="nav-link click-scroll" href="#section_4">FAQs</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link click-scroll" href="#section_5">Contact</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link click-scroll" href="signup.php">signup</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link click-scroll" href="admin/">Admin</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle fw-bold" href="javascript:void(0);" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Users</a>
 
-                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                        <li><a class="dropdown-item" href="pofile.php">Pofile</a></li>
+                <?php if (isset($_SESSION['loggedin'])  && $_SESSION['loggedin'] == true) {
+                    if ($_SESSION['role'] == "admin" ||  $_SESSION['role'] == "leader") { ?>
 
-                        <li><a class="dropdown-item" href="php/logout.php">Logout</a></li>
-                    </ul>
-                </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="admin/">Admin</a>
+                        </li>
+
+                    <?php }; ?>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-bold" href="javascript:void(0);" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?= $_SESSION['name'] ?></a>
+
+                        <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                            <li><a class="dropdown-item" href="pofile.php?id=<?= $_SESSION['userid'] ?>">Pofile</a></li>
+
+                            <li><a class="dropdown-item" href="php/logout.php">Logout</a></li>
+                        </ul>
+                    </li>
+
+                <?php } else { ?>
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="signup.php">signup</a>
+                    </li>
+                <?php }; ?>
+
 
             </ul>
 

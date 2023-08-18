@@ -1,3 +1,27 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+};
+require "php/dbConfig.php";
+
+if (empty($_GET['id'])) {
+    header("HTTP/1.1 401 Unauthorized");
+    exit;
+}
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $q = "select * from users where id='" . $id . "' limit 1";
+    $r = $db->query($q);
+    if (!$r->num_rows) {
+        exit;
+    }
+    $row = $r->fetch_assoc();
+    // var_dump($row);
+};
+
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -31,12 +55,12 @@
                     <div class="col-lg-5 col-12">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
+                                <li class="breadcrumb-item"><a href="index.php">Homepage</a></li>
 
                                 <li class="breadcrumb-item active" aria-current="page">Pofile</li>
                             </ol>
                         </nav>
-                        <h2 class="text-white">Yours Pofile</h2>
+                        <h2 class="text-white"><?= $row['name'] ?>'s Pofile</h2>
                     </div>
 
                 </div>
@@ -51,11 +75,13 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center">
-                                        <img src="images/emty.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                                        <div style="position: relative;width: 200px;height: 200px;overflow: hidden;border-radius: 50%;">
+                                            <img src="images/<?= $row['image'] ?>" alt="Admin" class="p-1 bg-primary" style="width: 100%;height: auto;">
+                                        </div>
                                         <div class="mt-3">
-                                            <h4>John Doe</h4>
-                                            <p class="text-secondary mb-1">education / job</p>
-                                            <p class="text-muted font-size-sm">phone</p>
+                                            <h4><?= $row['name'] ?></h4>
+                                            <p class="text-secondary mb-1"><?= $row['title'] ?></p>
+                                            <p class="text-muted font-size-sm"><?= $row['phone'] ?></p>
                                             <button class="btn" style="background-color: aquamarine;">Follow</button>
                                             <button class="btn">Message</button>
                                         </div>
@@ -66,14 +92,17 @@
                         <div class="col-lg-8">
                             <div class="card">
                                 <div class="card-body">
-
-                                    <form action="" method="post" enctype="multipart/form-data">
+                                    <p class="fw-bold text-info text-decoration-underline">Edit Pofile :</p>
+                                    <p class="text-center text-danger"></p>
+                                    
+                                    <form action="php/updatepofile.php" method="post" enctype="multipart/form-data">
+                                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <h6 class="mb-0">Name</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="text" name="name" class="form-control" value="John Doe" placeholder="Name">
+                                                <input type="text" name="name" class="form-control" value="<?= $row['name'] ?>" placeholder="Name" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -81,7 +110,7 @@
                                                 <h6 class="mb-0">Phone Number</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="number" name="number" class="form-control" value="0191817111" placeholder="Enter 11 digit phone number">
+                                                <input type="number" name="number" class="form-control" value="<?= $row['phone'] ?>" placeholder="Enter 11 digit phone number" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -89,21 +118,37 @@
                                                 <h6 class="mb-0">Education / Job Title</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="text" name="education" class="form-control" value="fffggg">
+                                                <input type="text" name="title" class="form-control" value="<?= $row['title'] ?>" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                                <h6 class="mb-0">Image</h6>
+                                                <h6 class="mb-0">Change Image</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="file" class="form-control" value="Bay Area, San Francisco, CA">
+                                                <input type="file" class="form-control" name="image" required>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">Old Password</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <input type="password" class="form-control" name="password" value="<?= $row['password'] ?>" required>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm-3">
+                                                <h6 class="mb-0">New Password</h6>
+                                            </div>
+                                            <div class="col-sm-9 text-secondary">
+                                                <input type="password" class="form-control" name="cpassword" required>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-sm-3"></div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="submit" style="background-color: aquamarine;" name="submit" class="btn px-4" value="Save Changes">
+                                                <input type="submit" style="background-color: aquamarine;" name="Changes" class="btn px-4" value="Save Changes">
                                             </div>
                                         </div>
                                     </form>

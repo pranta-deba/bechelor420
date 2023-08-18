@@ -1,3 +1,12 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+};
+require "php/dbConfig.php";
+
+
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -31,7 +40,7 @@
                     <div class="col-lg-5 col-12">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
+                                <li class="breadcrumb-item"><a href="index.php">Homepage</a></li>
 
                                 <li class="breadcrumb-item active" aria-current="page">Pofile</li>
                             </ol>
