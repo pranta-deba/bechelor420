@@ -51,7 +51,7 @@
                         <a class="nav-link dropdown-toggle fw-bold" href="javascript:void(0);" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?= $_SESSION['name'] ?></a>
 
                         <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                            <li><a class="dropdown-item" href="pofile.php">Pofile</a></li>
+                            <li><a class="dropdown-item" href="pofile.php?id=<?= $_SESSION['userid'] ?>">Pofile</a></li>
 
                             <li><a class="dropdown-item" href="php/logout.php">Logout</a></li>
                         </ul>

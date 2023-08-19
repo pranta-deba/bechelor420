@@ -4,7 +4,25 @@ if (session_status() === PHP_SESSION_NONE) {
 };
 require "php/dbConfig.php";
 
+if (empty($_GET['id'])) {
+    header("HTTP/1.1 401 Unauthorized");
+    exit;
+}
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
 
+    $q = "select * from users where id='" . $id . "' limit 1";
+    $r = $db->query($q);
+    if (!$r->num_rows) {
+        exit;
+    }
+    $row = $r->fetch_assoc();
+    // var_dump($row);
+};
+
+if (isset($_SESSION['loggedin'])  && $_SESSION['loggedin'] == true) {
+    $meeid = $_SESSION['loggedin'];
+};
 
 ?>
 <!doctype html>
@@ -45,7 +63,7 @@ require "php/dbConfig.php";
                                 <li class="breadcrumb-item active" aria-current="page">Pofile</li>
                             </ol>
                         </nav>
-                        <h2 class="text-white">Yours Pofile</h2>
+                        <h2 class="text-white"><?= $row['name'] ?></h2>
                     </div>
 
                 </div>
@@ -60,12 +78,14 @@ require "php/dbConfig.php";
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex flex-column align-items-center text-center">
-                                        <img src="images/emty.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+                                        <div style="position: relative;width: 200px;height: 200px;overflow: hidden;border-radius: 50%;">
+                                            <img src="images/<?= $row['image'] ?>" alt="Admin" class="p-1 bg-primary" style="width: 100%;height: auto;">
+                                        </div>
                                         <div class="mt-3">
-                                            <h4>John Doe</h4>
-                                            <p class="text-secondary mb-1">education / job</p>
+                                            <h4><?= $row['name'] ?></h4>
+                                            <p class="text-secondary mb-1"><?= $row['title'] ?></p>
                                             <p class="text-muted font-size-sm"><a href="tel: 01825406189" class="site-footer-link">
-                                                    182 5406 189
+                                                    <?= $row['phone'] ?>
                                                 </a></p>
                                             <button class="btn" style="background-color: aquamarine;">Follow</button>
                                             <button class="btn">Message</button>

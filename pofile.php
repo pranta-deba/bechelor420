@@ -42,7 +42,7 @@ if (isset($_GET['id'])) {
 
 <body id="top">
 
-    <main>
+    <main> 
 
         <!-- navbar strat -->
         <?php include "components/navbarmore.php"; ?>
@@ -89,14 +89,16 @@ if (isset($_GET['id'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-8">
+
+
+                        <div class="col-lg-8" id="form2">
                             <div class="card">
                                 <div class="card-body">
                                     <p class="fw-bold text-info text-decoration-underline">Edit Pofile :</p>
-                                    <p class="text-center text-danger"></p>
-                                    
+                                    <p class="text-center text-danger"><?php echo $_GET['abc'] ?? ""; ?></p>
+
                                     <form action="php/updatepofile.php" method="post" enctype="multipart/form-data">
-                                    <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <h6 class="mb-0">Name</h6>
@@ -121,6 +123,35 @@ if (isset($_GET['id'])) {
                                                 <input type="text" name="title" class="form-control" value="<?= $row['title'] ?>" required>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-sm-3"></div>
+                                            <div class="col-sm-9 text-secondary ">
+                                                <input type="submit" style="background-color: aquamarine;" name="Changes" class="btn px-4" value="Save Changes">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3"></div>
+                                            <div class="col-sm-9 text-secondary d-flax m-auto">
+                                                <a href="javascript:void(0);" onclick="showform();" class="text-secondary text-decoration-underline my-4">Change password & image?</a>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8" id="form1">
+                            <div class="card">
+                                <div class="card-body">
+                                    <button class="previous rounded display-5 fw-bold text-info" style="border: none; background: none;" onclick="showform2()">&#8249;</button>
+                                
+                                    <p class="fw-bold text-info text-decoration-underline">Password & Images Change</p>
+                                    <p class="text-center text-danger"><?php echo $_GET['abcd'] ?? ""; ?></p>
+
+                                    <form action="php/updatepofile.php" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <h6 class="mb-0">Change Image</h6>
@@ -134,7 +165,7 @@ if (isset($_GET['id'])) {
                                                 <h6 class="mb-0">Old Password</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="password" class="form-control" name="password" value="<?= $row['password'] ?>" required>
+                                                <input type="password" class="form-control" name="oldpassword" value="<?= $row['password'] ?>" required>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -142,20 +173,29 @@ if (isset($_GET['id'])) {
                                                 <h6 class="mb-0">New Password</h6>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="password" class="form-control" name="cpassword" required>
+                                                <input type="password" class="form-control" name="newpassword" required>
                                             </div>
-                                        </div>
+                                        </div>                                        
                                         <div class="row">
                                             <div class="col-sm-3"></div>
-                                            <div class="col-sm-9 text-secondary">
-                                                <input type="submit" style="background-color: aquamarine;" name="Changes" class="btn px-4" value="Save Changes">
+                                            <div class="col-sm-9 text-secondary d-flax m-auto">
+                                                <a href="php/forgotpass.php" class="text-secondary text-decoration-underline mb-4">Forgot Password?</a>
                                             </div>
+                                        </div>
+                                        <div class="row d-flex">
+                                            <div class="col-sm-9 text-secondary">
+                                                <input type="submit" style="background-color: aquamarine;" name="passimg" class="btn px-4" value="Save Changes">
+                                            </div>
+                                            <div class="col-sm-3"></div>
                                         </div>
                                     </form>
 
                                 </div>
                             </div>
                         </div>
+
+
+
                     </div>
                 </div>
             </div>
@@ -201,6 +241,7 @@ if (isset($_GET['id'])) {
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/jquery.sticky.js"></script>
     <script src="js/custom.js"></script>
+    <script src="js/hideshow.js"></script>
 
 </body>
 

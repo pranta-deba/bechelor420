@@ -64,53 +64,53 @@ require "php/dbConfig.php";
         <?php
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         } else { ?>
-        <section class="featured-section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 col-12">
-                        <div class="custom-block custom-block-overlay">
-                            <div class="d-flex flex-column h-100%">
-                                <img src="images/log.jpg" alt="" height="400px">
+            <section class="featured-section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-12">
+                            <div class="custom-block custom-block-overlay">
+                                <div class="d-flex flex-column h-100%">
+                                    <img src="images/log.jpg" alt="" height="400px">
 
-                                <div class="custom-block-overlay-text">
-                                    <div>
-                                        <h5 class="text-white  text-center">
-                                            Sign in</h5>
+                                    <div class="custom-block-overlay-text">
+                                        <div>
+                                            <h5 class="text-white  text-center">
+                                                Sign in</h5>
 
-                                        <p class="text-center text-danger m-0"><?php echo $_GET['m'] ?? ""; ?></p>
-                                        <p class="text-center text-success m-0"><?php echo $_GET['mgs'] ?? ""; ?></p>
+                                            <p class="text-center text-danger m-0"><?php echo $_GET['m'] ?? ""; ?></p>
+                                            <p class="text-center text-success m-0"><?php echo $_GET['mgs'] ?? ""; ?></p>
 
-                                        <form action="php/login.php" method="post" class="custom-form contact-form p-4" role="form" enctype="multipart/form-data">
-                                            <!--  -->
-                                            <div class="col-lg-12 col-12">
-                                                <div class="form-floating">
-                                                    <input type="number" name="number" id="number" class="form-control" placeholder="number" value="<?php echo $_GET['xyz'] ?? ""; ?>" required="">
-                                                    <label for="floatingInput">Enter 11 digit Phone Number</label>
+                                            <form action="php/login.php" method="post" class="custom-form contact-form p-4" role="form" enctype="multipart/form-data">
+                                                <!--  -->
+                                                <div class="col-lg-12 col-12">
+                                                    <div class="form-floating">
+                                                        <input type="number" name="number" id="number" class="form-control" placeholder="number" value="<?php echo $_GET['xyz'] ?? ""; ?>" required="">
+                                                        <label for="floatingInput">Enter 11 digit Phone Number</label>
+                                                    </div>
+
+                                                    <div class="form-floating inputBox">
+                                                        <input type="password" name="password" id="password" class="form-control" placeholder="password" required="">
+                                                        <label for="floatingTextarea">Password</label>
+                                                        <div class="show"></div>
+                                                    </div>
+                                                    <div class="d-flex justify-content-end">
+                                                        <a href="php/forgotpass.php" class="text-info text-end text-decoration-underline">Forgot password?</a>
+                                                    </div>
                                                 </div>
-
-                                                <div class="form-floating inputBox">
-                                                    <input type="password" name="password" id="password" class="form-control" placeholder="password" required="">
-                                                    <label for="floatingTextarea">Password</label>
-                                                    <div class="show"></div>
+                                                <div class="text-center">
+                                                    <button type="submit" name="submit" class="btn custom-btn mt-4 mt-lg-3 px-5">Login</button>
                                                 </div>
-                                                <div class="d-flex justify-content-end">
-                                                    <a href="#" class="text-info text-end text-decoration-underline">Forgot password?</a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center">
-                                                <button type="submit" name="submit" class="btn custom-btn mt-4 mt-lg-3 px-5">Login</button>
-                                            </div>
-                                            <!--  -->
-                                        </form>
+                                                <!--  -->
+                                            </form>
+                                        </div>
                                     </div>
+                                    <div class="section-overlay"></div>
                                 </div>
-                                <div class="section-overlay"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
         <?php }; ?>
         <!-- form end  -->
 
@@ -128,7 +128,7 @@ require "php/dbConfig.php";
                 <div class="row">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="design-tab" data-bs-toggle="tab" data-bs-target="#design-tab-pane" type="button" role="tab" aria-controls="design-tab-pane" aria-selected="true">Member</button>
+                            <button class="nav-link active" id="design-tab" data-bs-toggle="tab" data-bs-target="#design-tab-pane" type="button" role="tab" aria-controls="design-tab-pane" aria-selected="true">All Member</button>
                         </li>
 
                         <li class="nav-item" role="presentation">
@@ -148,54 +148,33 @@ require "php/dbConfig.php";
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="design-tab-pane" role="tabpanel" aria-labelledby="design-tab" tabindex="0">
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="#">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2 text-center">Pranta Deb</h5>
 
-                                                        <p class="mb-0 text-center">Student of Portcity International
-                                                            University</p>
+                                    <?php
+                                    // $selectQ = "SELECT * FROM users WHERE role='Member'";
+                                    $selectQ = "SELECT * FROM users WHERE 1";
+                                    $member = $db->query($selectQ);
+                                    
+                                    
+                                    while ($memberRow = $member->fetch_assoc()) {
+                                        echo '<div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                        <div class="custom-block bg-white shadow-lg">
+                                            <a href="memberPofile.php?id='.$memberRow['id'].'">
+                                                <div class="">
+                                                    <div class="text-center">
+                                                        <h5 class="mb-2 text-center">' . $memberRow['name'] . '</h5>
+
+                                                        <p class="mb-0 text-center">' . $memberRow['title'] . '</p>
                                                     </div>
                                                 </div>
 
-                                                <img src="images/me.png" class="custom-block-image img-fluid">
+                                                <img src="images/' . $memberRow['image'] . '" class="custom-block-image img-fluid">
                                             </a>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="#">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2 text-center">Pranta Deb</h5>
+                                    </div>';
+                                    };
+                                    ?>
 
-                                                        <p class="mb-0 text-center">Student of Portcity International
-                                                            University</p>
-                                                    </div>
-                                                </div>
 
-                                                <img src="images/me.png" class="custom-block-image img-fluid">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="#">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2 text-center">Pranta Deb</h5>
-
-                                                        <p class="mb-0 text-center">Student of Portcity International
-                                                            University</p>
-                                                    </div>
-                                                </div>
-
-                                                <img src="images/me.png" class="custom-block-image img-fluid">
-                                            </a>
-                                        </div>
-                                    </div>
 
                                 </div>
                             </div>
