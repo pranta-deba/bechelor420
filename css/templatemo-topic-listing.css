@@ -1,4 +1,4 @@
-/*
+/*-
 
 TemplateMo 590 topic listing
 
@@ -632,6 +632,9 @@ strong {
   height: 297px;
   object-fit: cover;
   margin-top: 35px;
+}
+.custom-block-image2 {
+  display: block;width: 70%;height: 100px;object-fit: cover;margin-top: 35px;
 }
 
 .custom-block .rounded-pill {

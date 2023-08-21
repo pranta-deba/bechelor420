@@ -30,6 +30,9 @@ if (isset($_POST['Changes'])) {
             };
         };
     };
+}else{
+    header("HTTP/1.1 401 Unauthorized");
+    exit;
 };
 
 
@@ -78,4 +81,7 @@ if (isset($_POST['passimg'])) {
             };
         };
     };
+}else{
+    header("HTTP/1.1 401 Unauthorized");
+    exit;
 };

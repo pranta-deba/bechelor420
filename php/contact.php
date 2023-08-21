@@ -19,4 +19,7 @@ if (isset($_POST['submitMassage'])) {
             header("Location: ../index.php?contactName=$name");
         };
     }
+}else{
+    header("HTTP/1.1 401 Unauthorized");
+    exit;
 };

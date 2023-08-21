@@ -7,5 +7,8 @@ if (session_status() === PHP_SESSION_NONE) {
  if(isset($_POST['submit'])){
     $phone = $_POST['subscribe-number'];
     header("location:../index.php?xyz=$phone&m=Please Login!");
- };
+ }else{
+   header("HTTP/1.1 401 Unauthorized");
+   exit;
+};
 ?>

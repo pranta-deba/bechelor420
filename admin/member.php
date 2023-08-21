@@ -1,3 +1,16 @@
+<?php 
+require "php/adminLeader.php";
+require "../php/dbConfig.php";
+$adminS = "SELECT * FROM users WHERE `role`='admin'";
+$AdminQ = $db->query($adminS);
+
+$leaderS = "SELECT * FROM users WHERE `role`='leader'";
+$leaderQ = $db->query($leaderS);
+
+$memberS = "SELECT * FROM users WHERE `role`='member'";
+$memberQ = $db->query($memberS);
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -57,9 +70,6 @@
         <section class="section-padding section-bg">
             <div class="container">
                 <div class="row" style="width: 100%; overflow: scroll;">
-
-
-
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -67,31 +77,40 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Role</th>
-                                <th scope="col">Time</th>
+                                <th scope="col">image</th>
                             </tr>
                         </thead>
+
                         <tbody>
-                            <tr>
-                                <th scope="row">10</th>
-                                <td>pranta deb</td>
-                                <td>09876543217</td>
-                                <td>admin</td>
-                                <td>12-12-2023</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">10</th>
-                                <td>pranta deb</td>
-                                <td>09876543217</td>
-                                <td>admin</td>
-                                <td>12-12-2023</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">10</th>
-                                <td>pranta deb</td>
-                                <td>09876543217</td>
-                                <td>admin</td>
-                                <td>12-12-2023</td>
-                            </tr>
+                            <?php 
+                             while ($adminRow = $AdminQ->fetch_assoc()) {
+                                echo '<tr>
+                                <th scope="row">' . $adminRow['id'] . '</th>
+                                <td>' . $adminRow['name'] . '</td>
+                                <td>' . $adminRow['phone'] . '</td>
+                                <td>' . $adminRow['role'] . '</td>
+                                <td> <img src="../images/' . $adminRow['image'] . '" class="img-fluid" alt="" style="display: block;width: 100px;height: 100px;object-fit: cover;"></td>
+                            </tr>';
+                            }
+                             while ($leaderRow = $leaderQ->fetch_assoc()) {
+                                echo '<tr>
+                                <th scope="row">' . $leaderRow['id'] . '</th>
+                                <td>' . $leaderRow['name'] . '</td>
+                                <td>' . $leaderRow['phone'] . '</td>
+                                <td>' . $leaderRow['role'] . '</td>
+                                <td> <img src="../images/' . $leaderRow['image'] . '" class="img-fluid" alt="" style="display: block;width: 100px;height: 100px;object-fit: cover;"></td>
+                            </tr>';
+                            }
+                             while ($memberRow = $memberQ->fetch_assoc()) {
+                                echo '<tr>
+                                <th scope="row">' . $memberRow['id'] . '</th>
+                                <td>' . $memberRow['name'] . '</td>
+                                <td>' . $memberRow['phone'] . '</td>
+                                <td>' . $memberRow['role'] . '</td>
+                                <td> <img src="../images/' . $memberRow['image'] . '" class="img-fluid" alt="" style="display: block;width: 100px;height: 100px;object-fit: cover;"></td>
+                            </tr>';
+                            }
+                            ?>
                         </tbody>
                     </table>
 

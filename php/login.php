@@ -31,4 +31,7 @@ if (session_status() === PHP_SESSION_NONE) {
     }else{
         header("location:../signup.php?m=Please Signup now!");
     };
+}else{
+    header("HTTP/1.1 401 Unauthorized");
+    exit;
 };

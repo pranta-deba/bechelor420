@@ -66,4 +66,7 @@ if (isset($_POST['submit'])) {
         $error = true;
         header("Location:../signup.php?m=This name field is required!");
     };
+}else{
+    header("HTTP/1.1 401 Unauthorized");
+    exit;
 };

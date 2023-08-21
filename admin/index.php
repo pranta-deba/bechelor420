@@ -1,3 +1,12 @@
+<?php
+require "php/adminLeader.php";
+require "../php/dbConfig.php";
+$q = "SELECT count(*) AS total FROM users WHERE `role`='admin' OR `role`='leader' OR `role`='member'";
+$r = $db->query($q);
+$totalMessMember = $r->fetch_assoc();
+
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -9,20 +18,12 @@
     <meta name="author" content="">
 
     <title>Dashboard</title>
-
-    <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans&display=swap" rel="stylesheet">
-
     <link href="../css/bootstrap.min.css" rel="stylesheet">
-
     <link href="../css/bootstrap-icons.css" rel="stylesheet">
-
     <link href="../css/templatemo-topic-listing.css" rel="stylesheet">
-
 </head>
 
 <body class="topics-listing-page" id="top">
@@ -67,15 +68,23 @@
                             <a href="member.php">
                                 <div class="d-flex">
                                     <div>
-                                        <h5 class="mb-2">Total Member : </h5>
+                                        <h5 class="mb-2">Total Mes Member : <?= $totalMessMember['total'] ?></h5>
 
-                                        <p class="mb-0">There are 30 members here.</p>
+                                        <p class="mb-0">There are <?= $totalMessMember['total'] ?> members here.</p>
                                     </div>
 
-                                    <span class="badge bg-finance rounded-pill ms-auto">30</span>
+                                    <span class="badge bg-finance rounded-pill ms-auto"><?= $totalMessMember['total'] ?></span>
                                 </div>
 
-                                <img src="../images/me.png" class="custom-block-image img-fluid" alt="">
+                                <div class="row d-flex justify-content-center">
+                                    <?php
+                                    $q2 = "SELECT * FROM users WHERE `role`='admin' OR `role`='leader' OR `role`='member'";
+                                    $r2 = $db->query($q2);
+                                    while ($img = $r2->fetch_assoc()) {
+                                        echo '<div class="col-lg-4 col-sm-12 col-md-6"><img src="../images/' . $img['image'] . '" class="img-fluid" alt="" width="70px" style="display: block;width: 50%;height: 100px;object-fit: cover;margin-top: 35px; margin-left:35px;"></div>';
+                                    }
+                                    ?>
+                                </div>
                             </a>
                         </div>
                     </div>

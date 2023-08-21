@@ -18,4 +18,7 @@ if (isset($_POST['chats'])) {
             header("Location: ../index.php#section_3");
         };
     }
+}else{
+    header("HTTP/1.1 401 Unauthorized");
+    exit;
 };
