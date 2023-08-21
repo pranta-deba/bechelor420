@@ -107,7 +107,6 @@ require "php/dbConfig.php";
                                     <select name="role" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" required>
                                         <option selected disabled value="">Select Option</option>
                                         <option value="member">Member</option>
-                                        <option value="leader">Leader</option>
                                         <option value="unknown">Unknown Person</option>
                                       </select>
                                       
@@ -130,6 +129,9 @@ require "php/dbConfig.php";
 
 
         <!-- subscribe -->
+        <?php
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        } else { ?>
         <section class="section-padding section-bg">
             <div class="container">
                 <div class="row justify-content-center">
@@ -139,13 +141,13 @@ require "php/dbConfig.php";
                     </div>
 
                     <div class="col-lg-5 col-12 subscribe-form-wrap d-flex justify-content-center align-items-center">
-                        <form class="custom-form subscribe-form" action="php/subscribe.php" method="get" role="form">
+                        <form class="custom-form subscribe-form" action="php/subscribe.php" method="post" role="form">
                             <h4 class="mb-4 pb-2">Get Newsletter</h4>
 
                             <input type="number" name="subscribe-number" id="subscribe-number" class="form-control" placeholder="Enter your 11 digit phone number" required="">
 
                             <div class="col-lg-12 col-12">
-                                <button type="submit" class="form-control">Subscribe</button>
+                                <button type="submit" name="submit" class="form-control">Subscribe</button>
                             </div>
                         </form>
                     </div>
@@ -153,6 +155,8 @@ require "php/dbConfig.php";
                 </div>
             </div>
         </section>
+        
+        <?php }; ?>
         <!-- subscribe -->
     </main>
 

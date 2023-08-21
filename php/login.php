@@ -19,10 +19,10 @@ if (session_status() === PHP_SESSION_NONE) {
             $_SESSION['name'] = $result['name'];
             $_SESSION['loggedin'] = true;
             $_SESSION['role'] = $result['role'];
-            if($result['role'] == "unknown"){
+            if($result['role'] == "unknown" || $result['role'] == "member"){
                 header("location:../index.php");
             };
-            if($result['role'] == "member" || $result['role'] == "leader"){
+            if($result['role'] == "admin" || $result['role'] == "leader"){
                 header("location:../admin/index.php");
             };
         }else{

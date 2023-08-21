@@ -103,29 +103,34 @@ if (isset($_SESSION['loggedin'])  && $_SESSION['loggedin'] == true) {
 
 
         <!-- subscribe -->
-        <section class="section-padding section-bg">
-            <div class="container">
-                <div class="row justify-content-center">
+        <?php
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        } else { ?>
+            <section class="section-padding section-bg">
+                <div class="container">
+                    <div class="row justify-content-center">
 
-                    <div class="col-lg-5 col-12">
-                        <img src="images/rear-view-young-college-student.jpg" class="newsletter-image img-fluid" alt="">
+                        <div class="col-lg-5 col-12">
+                            <img src="images/rear-view-young-college-student.jpg" class="newsletter-image img-fluid" alt="">
+                        </div>
+
+                        <div class="col-lg-5 col-12 subscribe-form-wrap d-flex justify-content-center align-items-center">
+                            <form class="custom-form subscribe-form" action="php/subscribe.php" method="post" role="form">
+                                <h4 class="mb-4 pb-2">Get Newsletter</h4>
+
+                                <input type="number" name="subscribe-number" id="subscribe-number" class="form-control" placeholder="Enter your 11 digit phone number" required="">
+
+                                <div class="col-lg-12 col-12">
+                                    <button type="submit" name="submit" class="form-control">Subscribe</button>
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
-
-                    <div class="col-lg-5 col-12 subscribe-form-wrap d-flex justify-content-center align-items-center">
-                        <form class="custom-form subscribe-form" action="php/subscribe.php" method="get" role="form">
-                            <h4 class="mb-4 pb-2">Get Newsletter</h4>
-
-                            <input type="number" name="subscribe-number" id="subscribe-number" class="form-control" placeholder="Enter your 11 digit phone number" required="">
-
-                            <div class="col-lg-12 col-12">
-                                <button type="submit" class="form-control">Subscribe</button>
-                            </div>
-                        </form>
-                    </div>
-
                 </div>
-            </div>
-        </section>
+            </section>
+
+        <?php }; ?>
         <!-- subscribe -->
     </main>
 

@@ -1,0 +1,2 @@
+ALTER TABLE chats
+ADD FOREIGN KEY (users_id) REFERENCES users(id);

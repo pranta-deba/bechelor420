@@ -4,8 +4,6 @@ if (session_status() === PHP_SESSION_NONE) {
 };
 require "php/dbConfig.php";
 
-
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -24,10 +22,23 @@ require "php/dbConfig.php";
     <link href="css/bootstrap-icons.css" rel="stylesheet">
     <link href="css/templatemo-topic-listing.css" rel="stylesheet">
     <link rel="stylesheet" href="css/customize.css">
-    <link rel="stylesheet" href="css/lefttoright.css">
+    <link rel="stylesheet" href="css/textanimate.css">
+    <link rel="stylesheet" href="css/sweetalert2.min.css">
+    <script src="js/sweetalert2.all.min.js"></script>
+    <style>
+
+    </style>
 </head>
 
 <body id="top">
+    <?php
+    if (isset($_GET['contactName'])) {
+        echo "<script> Swal.fire(
+            'Thanks!',
+            'For getting in touch!',
+            'success'
+          )</script>";
+    }; ?>
 
     <!-- loading ani start -->
     <div class="anima" id="anima">
@@ -51,7 +62,7 @@ require "php/dbConfig.php";
                 <div class="row">
 
                     <div class="col-lg-8 col-12 mx-auto">
-                        <h1 class="text-white text-center">Have Fun, Stay Tuned, And Enjoy.</h1>
+                        <h1 class="text-white text-center">Have <span class="rotate"><span>F</span><span>u</span><span>n</span></span>,<br> Stay <span class="rotate"><span>T</span><span>u</span><span>n</span><span>e</span><span>d</span></span>, <br> And <span class="rotate"><span>E</span><span>n</span><span>j</span><span>o</span><span>y</span>.</span></h1>
                         <h6 class="text-center">This is only for bachelor boys.</h6>
                     </div>
                 </div>
@@ -150,141 +161,77 @@ require "php/dbConfig.php";
                                 <div class="row">
 
                                     <?php
-                                    // $selectQ = "SELECT * FROM users WHERE role='Member'";
-                                    $selectQ = "SELECT * FROM users WHERE 1";
-                                    $member = $db->query($selectQ);
-                                    
-                                    
-                                    while ($memberRow = $member->fetch_assoc()) {
-                                        echo '<div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                    $selectAll = "SELECT * FROM users WHERE 1";
+                                    $AllQuery = $db->query($selectAll);
+                                    while ($All = $AllQuery->fetch_assoc()) {
+                                        echo '<div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-4">
                                         <div class="custom-block bg-white shadow-lg">
-                                            <a href="memberPofile.php?id='.$memberRow['id'].'">
+                                            <a href="memberPofile.php?id=' . $All['id'] . '">
                                                 <div class="">
                                                     <div class="text-center">
-                                                        <h5 class="mb-2 text-center">' . $memberRow['name'] . '</h5>
+                                                        <h5 class="mb-2 text-center">' . $All['name'] . '</h5>
 
-                                                        <p class="mb-0 text-center">' . $memberRow['title'] . '</p>
+                                                        <p class="mb-0 text-center">' . $All['title'] . '</p>
                                                     </div>
                                                 </div>
 
-                                                <img src="images/' . $memberRow['image'] . '" class="custom-block-image img-fluid">
+                                                <img src="images/' . $All['image'] . '" class="custom-block-image img-fluid">
                                             </a>
                                         </div>
                                     </div>';
                                     };
                                     ?>
-
-
-
                                 </div>
                             </div>
 
                             <div class="tab-pane fade" id="marketing-tab-pane" role="tabpanel" aria-labelledby="marketing-tab" tabindex="0">
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="#">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2 text-center">Pranta Deb</h5>
+                                    <?php
+                                    $selectLeader = "SELECT * FROM users WHERE role='leader'";
+                                    $leaderQueary = $db->query($selectLeader);
+                                    while ($leader = $leaderQueary->fetch_assoc()) {
+                                        echo '<div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-4">
+                                    <div class="custom-block bg-white shadow-lg">
+                                        <a href="memberPofile.php?id=' . $leader['id'] . '">
+                                            <div class="d-flex">
+                                                <div>
+                                                    <h5 class="mb-2 text-center">' . $leader['name'] . '</h5>
 
-                                                        <p class="mb-0 text-center">Student of Portcity International
-                                                            University</p>
-                                                    </div>
+                                                    <p class="mb-0 text-center">' . $leader['title'] . '</p>
                                                 </div>
+                                            </div>
 
-                                                <img src="images/me.png" class="custom-block-image img-fluid">
-                                            </a>
-                                        </div>
+                                            <img src="images/' . $leader['image'] . '" class="custom-block-image img-fluid">
+                                        </a>
                                     </div>
-
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="#">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2 text-center">Pranta Deb</h5>
-
-                                                        <p class="mb-0 text-center">Student of Portcity International
-                                                            University</p>
-                                                    </div>
-                                                </div>
-
-                                                <img src="images/me.png" class="custom-block-image img-fluid">
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="#">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2 text-center">Pranta Deb</h5>
-
-                                                        <p class="mb-0 text-center">Student of Portcity International
-                                                            University</p>
-                                                    </div>
-                                                </div>
-
-                                                <img src="images/me.png" class="custom-block-image img-fluid">
-                                            </a>
-                                        </div>
-                                    </div>
+                                </div>';
+                                    };
+                                    ?>
                                 </div>
                             </div>
 
                             <div class="tab-pane fade" id="finance-tab-pane" role="tabpanel" aria-labelledby="finance-tab" tabindex="0">
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
+                                    <?php
+                                    $selectadmin = "SELECT * FROM users WHERE role='admin'";
+                                    $adminQueary = $db->query($selectadmin);
+                                    while ($admin = $adminQueary->fetch_assoc()) {
+                                        echo '<div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-4">
                                         <div class="custom-block bg-white shadow-lg">
-                                            <a href="#">
+                                            <a href="memberPofile.php?id=' . $admin['id'] . '">
                                                 <div class="d-flex">
                                                     <div>
-                                                        <h5 class="mb-2 text-center">Pranta Deb</h5>
+                                                        <h5 class="mb-2 text-center">' . $admin['name'] . '</h5>
 
-                                                        <p class="mb-0 text-center">Student of Portcity International
-                                                            University</p>
+                                                        <p class="mb-0 text-center">' . $admin['title'] . '</p>
                                                     </div>
                                                 </div>
-                                                <img src="images/me.png" class="custom-block-image img-fluid">
+                                                <img src="images/' . $admin['image'] . '" class="custom-block-image img-fluid">
                                             </a>
                                         </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="#">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2 text-center">Pranta Deb</h5>
-
-                                                        <p class="mb-0 text-center">Student of Portcity International
-                                                            University</p>
-                                                    </div>
-                                                </div>
-
-                                                <img src="images/me.png" class="custom-block-image img-fluid">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0">
-                                        <div class="custom-block bg-white shadow-lg">
-                                            <a href="#">
-                                                <div class="d-flex">
-                                                    <div>
-                                                        <h5 class="mb-2 text-center">Pranta Deb</h5>
-
-                                                        <p class="mb-0 text-center">Student of Portcity International
-                                                            University</p>
-                                                    </div>
-                                                </div>
-
-                                                <img src="images/me.png" class="custom-block-image img-fluid">
-                                            </a>
-                                        </div>
-                                    </div>
-
+                                    </div>';
+                                    };
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -305,83 +252,46 @@ require "php/dbConfig.php";
                     <div class="clearfix"></div>
 
                     <div class="col-lg-8 col-12 m-auto" style="height: 100%;">
-                        <div class="card overflow-scroll flex-column-reverse" style="width: 100%; height: 600px; background-color: transparent !important; border: none;">
+                        <div class="card overflow-scroll flex-column-reverse" style="width: 100%; max-height: 600px; background-color: transparent !important; border: none;">
+
+                            <?php
+                            // $selectQ = "SELECT * FROM users WHERE role='Member'";
+
+                            $selectQ2 = "select chats.*, users.name as name from chats,users where chats.users_id=users.id order by chats.created_at desc";
+                            $member2 = $db->query($selectQ2);
+                            // $selectQ2 = "SELECT * FROM users WHERE `id`=";
+                            // $memberRow2 = $member2->fetch_assoc();
 
 
-                            <div class="card-body">
+                            while ($memberRow2 = $member2->fetch_assoc()) {
+                                echo '<div class="card-body">
                                 <div class="card" style="width: 100%;">
                                     <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <p class="text-dark fs-6">Posted By : <span class="text-info">Name 1</span>
+                                        <div>
+                                            <p class="text-dark h6"><small>Posted By : <span class="text-info fw-bold h6">' . $memberRow2['name'] . '</span></small>
                                             </p>
-                                            <p class="text-dark fs-6">Time : <span class="text-info">10-12-2023</span>
-                                            </p>
-                                        </div>
-                                        <p class="fs-6">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                            Fugiat, numquam quia recusandae architecto nostrum aperiam inventore eum
-                                            perspiciatis accusamus tempore suscipit in corporis consequatur corrupti
-                                            placeat tempora est modi ipsa!</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="card" style="width: 100%;">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <p class="text-dark fs-6">Posted By : <span class="text-info">Name 2</span>
-                                            </p>
-                                            <p class="text-dark fs-6">Time : <span class="text-info">10-12-2023</span>
+                                            <p class="text-dark h6"><small>Time : <span class="text-info h6">' . $memberRow2['created_at'] . '</small></span>
                                             </p>
                                         </div>
-                                        <p class="fs-6">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                            Fugiat, numquam quia recusandae architecto nostrum aperiam inventore eum
-                                            perspiciatis accusamus tempore suscipit in corporis consequatur corrupti
-                                            placeat tempora est modi ipsa!</p>
+                                        <hr>
+                                        <p class="fs-6 fw-bold text-center">' . $memberRow2['massage'] . '</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="card" style="width: 100%;">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <p class="text-dark fs-6">Posted By : <span class="text-info">Name 3</span>
-                                            </p>
-                                            <p class="text-dark fs-6">Time : <span class="text-info">10-12-2023</span>
-                                            </p>
-                                        </div>
-                                        <p class="fs-6">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                            Fugiat, numquam quia recusandae architecto nostrum aperiam inventore eum
-                                            perspiciatis accusamus tempore suscipit in corporis consequatur corrupti
-                                            placeat tempora est modi ipsa!</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="card" style="width: 100%;">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <p class="text-dark fs-6">Posted By : <span class="text-info">Name 4</span>
-                                            </p>
-                                            <p class="text-dark fs-6">Time : <span class="text-info">10-12-2023</span>
-                                            </p>
-                                        </div>
-                                        <p class="fs-6">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                            Fugiat, numquam quia recusandae architecto nostrum aperiam inventore eum
-                                            perspiciatis accusamus tempore suscipit in corporis consequatur corrupti
-                                            placeat tempora est modi ipsa!</p>
-                                    </div>
-                                </div>
-                            </div>
+                            </div>';
+                            };
+                            ?>
+
 
 
                         </div>
                         <div class="chatmgsbtn">
-                            <form action="php/chats.php" method="get" enctype="multipart/form-data">
+                            <form action="php/chats.php" method="post" enctype="multipart/form-data">
                                 <div class="container mt-1" style="width: 100%;">
                                     <div class="row">
                                         <div class="col-12">
+                                            <input type="hidden" name="id" value="<?= $_SESSION['userid'] ?? ""; ?>">
                                             <textarea class="form-control" id="" rows="3" name="chatsmgs" placeholder="Massage"></textarea>
-                                            <button type="submit" class="form-control btn">Send</button>
+                                            <button type="submit" name="chats" class="form-control btn">Send</button>
                                         </div>
                                     </div>
                                 </div>
@@ -463,7 +373,7 @@ require "php/dbConfig.php";
         </section>
         <!-- question end -->
 
-        <!-- get on tuch start -->
+        <!-- contact -->
         <section class="contact-section section-padding section-bg" id="section_5">
             <div class="container">
                 <div class="row">
@@ -472,16 +382,14 @@ require "php/dbConfig.php";
                         <h2 class="mb-5">Get in touch</h2>
                     </div>
 
-                    <div class="col-lg-5 col-12 mb-4 mb-lg-0">
+                    <div class="col-lg-12 col-12 mb-4 mb-lg-2">
                         <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d591.8709616877476!2d91.81168574791556!3d22.357184922543375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sbd!4v1692010670973!5m2!1sen!2sbd" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 col-12 mb-3 mb-lg- mb-md-0 ms-auto">
+                    <div class="col-lg-6 col-md-6 col-12 mb-3 mt-lg-3 mb-md-0 ms-auto">
                         <h4 class="mb-3">Home Address 1</h4>
 
                         <p>Khulshi 1 No. &amp; Next to Morjid , Chittagong.</p>
-
-                        <hr>
 
                         <p class="d-flex align-items-center mb-1">
                             <span class="me-2">Phone</span>
@@ -499,34 +407,52 @@ require "php/dbConfig.php";
                             </a>
                         </p>
                     </div>
+                    <div class="col-lg-6 col-md-6 col-12 mb-3 mt-lg-3 mb-md-0 ms-auto">
+                        <p class="text-danger text-center"><?php echo $_GET['contactValid'] ?? ""; ?></p>
+                        <form action="php/contact.php" method="post" class="custom-form contact-form" role="form">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="form-floating">
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name" required="">
 
-                    <div class="col-lg-3 col-md-6 col-12 mx-auto">
-                        <h4 class="mb-3">Home Address 2</h4>
+                                        <label for="floatingInput">Name</label>
+                                    </div>
+                                </div>
 
-                        <p>On the right of Marjid in front of portcity international university road.</p>
+                                <div class="col-lg-6 col-md-6 col-12">
+                                    <div class="form-floating">
+                                        <input type="number" name="Phone" id="Phone" class="form-control" placeholder="Email address" required="">
 
-                        <hr>
+                                        <label for="floatingInput">11 Digit phone number</label>
+                                    </div>
+                                </div>
 
-                        <p class="d-flex align-items-center mb-1">
-                            <span class="me-2">Phone</span>
+                                <div class="col-lg-12 col-12">
+                                    <div class="form-floating">
+                                        <input type="text" name="subject" id="name" class="form-control" placeholder="Name" required="">
 
-                            <a href="tel: +8801825406189" class="site-footer-link">
-                                +8801825406189
-                            </a>
-                        </p>
+                                        <label for="floatingInput">Subject</label>
+                                    </div>
 
-                        <p class="d-flex align-items-center">
-                            <span class="me-2">Email</span>
+                                    <div class="form-floating">
+                                        <textarea class="form-control" id="message" name="message" placeholder="Tell me about the project" required></textarea>
 
-                            <a href="mailto:pranta@gmail.com" class="site-footer-link">
-                                info@owner.com
-                            </a>
-                        </p>
+                                        <label for="floatingTextarea">Tell me about the project</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-12 ms-auto">
+                                    <button type="submit" name="submitMassage" class="form-control">Submit</button>
+                                </div>
+
+                            </div>
+                        </form>
                     </div>
+
                 </div>
             </div>
         </section>
-        <!-- get on tuch end -->
+        <!-- contact -->
 
 
 

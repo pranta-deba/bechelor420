@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
                                 move_uploaded_file($_FILES['image']['tmp_name'], "../images/" . $image);
                             };
                         };
-                        if ($role == "member" || $role == "leader" || $role == "unknown") {
+                        if ($role == "member" || $role == "unknown") {
 
 
 

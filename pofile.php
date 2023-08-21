@@ -205,6 +205,9 @@ if (isset($_GET['id'])) {
 
 
         <!-- subscribe -->
+        <?php
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        } else { ?>
         <section class="section-padding section-bg">
             <div class="container">
                 <div class="row justify-content-center">
@@ -214,13 +217,13 @@ if (isset($_GET['id'])) {
                     </div>
 
                     <div class="col-lg-5 col-12 subscribe-form-wrap d-flex justify-content-center align-items-center">
-                        <form class="custom-form subscribe-form" action="php/subscribe.php" method="get" role="form">
+                        <form class="custom-form subscribe-form" action="php/subscribe.php" method="post" role="form">
                             <h4 class="mb-4 pb-2">Get Newsletter</h4>
 
                             <input type="number" name="subscribe-number" id="subscribe-number" class="form-control" placeholder="Enter your 11 digit phone number" required="">
 
                             <div class="col-lg-12 col-12">
-                                <button type="submit" class="form-control">Subscribe</button>
+                                <button type="submit" name="submit" class="form-control">Subscribe</button>
                             </div>
                         </form>
                     </div>
@@ -228,6 +231,8 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
         </section>
+        
+        <?php }; ?>
         <!-- subscribe -->
     </main>
 
