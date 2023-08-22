@@ -23,10 +23,15 @@
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="member.php">Member</a>
                         </li>
+                        <?php if (isset($_SESSION['loggedin'])  && $_SESSION['loggedin'] == true) {
+                    if ($_SESSION['role'] == "admin") { ?>
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="usersaccess.php">Users Access</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="massage.php">Massage</a>
+                        </li>
+                        <?php }}; ?>
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="../index.php#section_3">Chats</a>
                         </li>
@@ -40,7 +45,7 @@
                                 aria-expanded="false">Users</a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                                <li><a class="dropdown-item" href="../pofile.php">Pofile</a></li>
+                                <li><a class="dropdown-item" href="../pofile.php?id=<?= $_SESSION['userid'] ?>">Pofile</a></li>
 
                                 <li><a class="dropdown-item" href="../php/logout.php">Logout</a></li>
                             </ul>

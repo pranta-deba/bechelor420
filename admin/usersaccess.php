@@ -1,3 +1,10 @@
+<?php
+require "php/adminLeader.php";
+require "../php/dbConfig.php";
+
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -77,32 +84,29 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Phone</th>
+                                <th scope="col">password</th>
                                 <th scope="col">Role</th>
-                                <th scope="col">Edit / Delete</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">10</th>
-                                <td>pranta deb</td>
-                                <td>09876543217</td>
-                                <td>admin</td>
-                                <td><a href="../pofile.html">Edit</a>|<a href="">Detele</a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">10</th>
-                                <td>pranta deb</td>
-                                <td>09876543217</td>
-                                <td>admin</td>
-                                <td><a href="../pofile.html">Edit</a>|<a href="">Detele</a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">10</th>
-                                <td>pranta deb</td>
-                                <td>09876543217</td>
-                                <td>admin</td>
-                                <td><a href="../pofile.html">Edit</a>|<a href="">Detele</a></td>
-                            </tr>
+                            <?php
+                            $selectAll = "SELECT * FROM users WHERE 1";
+                            $AllQuery = $db->query($selectAll);
+                            while ($All = $AllQuery->fetch_assoc()) {
+                                echo "<tr>
+                                <th scope='row'>".$All['id']."</th>
+                                <td>".$All['name']."</td>
+                                <td>".$All['phone']."</td>
+                                <td>".$All['password']."</td>
+                                <td>".$All['role']."</td>
+                                <td>".$All['created_at']."</td>
+                                <td><a onclick=\"return confirm('Are you sure want to delete this?');\" href='php/delete.php?id={$All['id']}' class='btn btn-sm btn-danger text-white'>Delete</a></td>
+                            </tr>";
+                            };
+                            ?>
+                            
                         </tbody>
                     </table>
 
