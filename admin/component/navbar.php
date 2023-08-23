@@ -26,10 +26,13 @@
                         <?php if (isset($_SESSION['loggedin'])  && $_SESSION['loggedin'] == true) {
                     if ($_SESSION['role'] == "admin") { ?>
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="usersaccess.php">Users Access</a>
+                            <a class="nav-link click-scroll" href="usersaccess.php">Access</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="massage.php">Massage</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="contactmail.php">Mail</a>
                         </li>
                         <?php }}; ?>
                         <li class="nav-item">
@@ -42,7 +45,7 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle fw-bold" href="javascript:void(0);"
                                 id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">Users</a>
+                                aria-expanded="false"><?= $_SESSION['name'] ?></a>
 
                             <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
                                 <li><a class="dropdown-item" href="../pofile.php?id=<?= $_SESSION['userid'] ?>">Pofile</a></li>

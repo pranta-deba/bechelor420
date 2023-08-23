@@ -60,7 +60,7 @@ require "../php/dbConfig.php";
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
 
-                                <li class="breadcrumb-item active" aria-current="page">Massage</li>
+                                <li class="breadcrumb-item active" aria-current="page">Mail</li>
                             </ol>
                         </nav>
 
@@ -81,8 +81,10 @@ require "../php/dbConfig.php";
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">User Id</th>
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Number</th>
+                                <th scope="col">Subject</th>
                                 <th scope="col">Massage</th>
                                 <th scope="col">Time</th>
                                 <th scope="col">Delete</th>
@@ -90,15 +92,17 @@ require "../php/dbConfig.php";
                         </thead>
                         <tbody>
                             <?php
-                            $selectChats = "SELECT * FROM chats WHERE 1";
+                            $selectChats = "SELECT * FROM contacts WHERE 1";
                             $ChatsQuery = $db->query($selectChats);
                             while ($row = $ChatsQuery->fetch_assoc()) {
                                 echo "<tr>
                                 <th scope='row'>".$row['id']."</th>
-                                <td>".$row['users_id']."</td>
+                                <th scope='row'>".$row['name']."</th>
+                                <td>".$row['number']."</td>
+                                <td>".$row['subject']."</td>
                                 <td>".$row['massage']."</td>
                                 <td>".$row['created_at']."</td>
-                                <td><a onclick=\"return confirm('Are you sure want to delete this?');\" href='php/delete.php?id2={$row['id']}' class='btn btn-sm btn-danger text-white'>Delete</a></td>
+                                <td><a onclick=\"return confirm('Are you sure want to delete this?');\" href='php/delete.php?id3={$row['id']}' class='btn btn-sm btn-danger text-white'>Delete</a></td>
                             </tr>";
                             };
                             ?>

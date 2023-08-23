@@ -30,7 +30,11 @@ require "../php/dbConfig.php";
 
     <link href="../css/templatemo-topic-listing.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/customize.css">
-
+    <style>
+        .change:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body class="topics-listing-page" id="top">
@@ -74,9 +78,8 @@ require "../php/dbConfig.php";
 
         <section class="section-padding section-bg">
             <div class="container">
+                <p class="text-success text-center"><?php echo $_GET['roleUpdateMgs'] ?? ""; ?></p>
                 <div class="row" style="width: 100%; overflow: scroll;">
-
-
 
                     <table class="table table-striped">
                         <thead>
@@ -86,7 +89,6 @@ require "../php/dbConfig.php";
                                 <th scope="col">Phone</th>
                                 <th scope="col">password</th>
                                 <th scope="col">Role</th>
-                                <th scope="col">Time</th>
                                 <th scope="col">Delete</th>
                             </tr>
                         </thead>
@@ -96,17 +98,16 @@ require "../php/dbConfig.php";
                             $AllQuery = $db->query($selectAll);
                             while ($All = $AllQuery->fetch_assoc()) {
                                 echo "<tr>
-                                <th scope='row'>".$All['id']."</th>
-                                <td>".$All['name']."</td>
-                                <td>".$All['phone']."</td>
-                                <td>".$All['password']."</td>
-                                <td>".$All['role']."</td>
-                                <td>".$All['created_at']."</td>
+                                <th scope='row'>" . $All['id'] . "</th>
+                                <td>" . $All['name'] . "</td>
+                                <td>" . $All['phone'] . "</td>
+                                <td>" . $All['password'] . "</td>
+                                <td>" . $All['role'] . "  -  <a href='role.php?id={$All['id']}' class='text-danger change'>Change</a>" . "</td>
                                 <td><a onclick=\"return confirm('Are you sure want to delete this?');\" href='php/delete.php?id={$All['id']}' class='btn btn-sm btn-danger text-white'>Delete</a></td>
                             </tr>";
                             };
                             ?>
-                            
+
                         </tbody>
                     </table>
 

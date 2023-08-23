@@ -1,0 +1,27 @@
+[23-Aug-2023 04:42:37 America/Boise] PHP Parse error:  syntax error, unexpected identifier "cars", expecting "," or ";" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 105
+[23-Aug-2023 04:42:39 America/Boise] PHP Parse error:  syntax error, unexpected identifier "cars", expecting "," or ";" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 105
+[23-Aug-2023 04:42:41 America/Boise] PHP Parse error:  syntax error, unexpected identifier "cars", expecting "," or ";" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 105
+[23-Aug-2023 04:42:41 America/Boise] PHP Parse error:  syntax error, unexpected identifier "cars", expecting "," or ";" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 105
+[23-Aug-2023 04:43:56 America/Boise] PHP Parse error:  syntax error, unexpected identifier "cars", expecting "," or ";" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 105
+[23-Aug-2023 04:43:58 America/Boise] PHP Parse error:  syntax error, unexpected identifier "cars", expecting "," or ";" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 105
+[23-Aug-2023 04:43:59 America/Boise] PHP Parse error:  syntax error, unexpected identifier "cars", expecting "," or ";" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 105
+[23-Aug-2023 04:49:30 America/Boise] PHP Parse error:  syntax error, unexpected identifier "leader", expecting "," or ";" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 107
+[23-Aug-2023 04:50:05 America/Boise] PHP Parse error:  syntax error, unexpected identifier "leader", expecting "," or ";" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 107
+[23-Aug-2023 04:50:37 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "leader" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php:107
+Stack trace:
+#0 {main}
+  thrown in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 107
+[23-Aug-2023 04:51:00 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "leader" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php:107
+Stack trace:
+#0 {main}
+  thrown in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 107
+[23-Aug-2023 04:51:02 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "leader" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php:107
+Stack trace:
+#0 {main}
+  thrown in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 107
+[23-Aug-2023 04:51:02 America/Boise] PHP Fatal error:  Uncaught Error: Undefined constant "leader" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php:107
+Stack trace:
+#0 {main}
+  thrown in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 107
+[23-Aug-2023 04:57:03 America/Boise] PHP Parse error:  syntax error, unexpected token "?" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 107
+[23-Aug-2023 04:59:03 America/Boise] PHP Parse error:  syntax error, unexpected token "?" in /home3/eveloqh8/public_html/bechelor420/admin/usersaccess.php on line 107

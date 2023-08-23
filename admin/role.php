@@ -3,6 +3,25 @@ require "php/adminLeader.php";
 require "../php/dbConfig.php";
 
 
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+
+    $q = "SELECT * FROM users WHERE id='" . $id . "' limit 1";
+    $r = $db->query($q);
+    $row = $r->fetch_assoc();
+} elseif (isset($_POST['roleUpdate']) && isset($_GET['id2'])) {
+    $newRole = $_POST['rolee'];
+    $usersId = $_GET['id2'];
+
+    $uq = "update users set role='" . $newRole . "' where id='" . $usersId . "' ";
+    $db->query($uq);
+    $message = "Role updated.";
+    header("location: usersaccess.php?roleUpdateMgs=$message");
+} else {
+    header("HTTP/1.1 401 Unauthorized");
+    exit;
+}
+
 ?>
 
 <!doctype html>
@@ -60,11 +79,11 @@ require "../php/dbConfig.php";
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="index.html">Homepage</a></li>
 
-                                <li class="breadcrumb-item active" aria-current="page">Massage</li>
+                                <li class="breadcrumb-item active" aria-current="page">Change Role</li>
                             </ol>
                         </nav>
 
-                        <h2 class="text-white">Change</h2>
+                        <h2 class="text-white"><?= $row['name'] ?></h2>
                     </div>
 
                 </div>
@@ -74,37 +93,20 @@ require "../php/dbConfig.php";
 
         <section class="section-padding section-bg">
             <div class="container">
-                <div class="row" style="width: 100%; overflow: scroll;">
+                <div class="row">
 
 
+                    <form action="role.php?id2=<?= $id ?>" method="post" style="width: 80%; display: block; margin: 0 auto;">
+                        <select class="form-select" name="rolee" aria-label="Default select example">
+                            <option value="admin" <?= $row['role'] == "admin" ? "selected" : ""; ?>>Admin</option>
+                            <option value="leader" <?= $row['role'] == "leader" ? "selected" : ""; ?>>Leader</option>
+                            <option value="member" <?= $row['role'] == "member" ? "selected" : ""; ?>>Member</option>
+                        </select>
+                        <div class="text-center">
+                            <button type="submit" name="roleUpdate" class="m-4 text-white bg-danger" style="outline: none; border: none; padding: 5px 10px;">Update Role</button>
+                        </div>
+                    </form>
 
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">User Id</th>
-                                <th scope="col">Massage</th>
-                                <th scope="col">Time</th>
-                                <th scope="col">Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $selectChats = "SELECT * FROM chats WHERE 1";
-                            $ChatsQuery = $db->query($selectChats);
-                            while ($row = $ChatsQuery->fetch_assoc()) {
-                                echo "<tr>
-                                <th scope='row'>".$row['id']."</th>
-                                <td>".$row['users_id']."</td>
-                                <td>".$row['massage']."</td>
-                                <td>".$row['created_at']."</td>
-                                <td><a onclick=\"return confirm('Are you sure want to delete this?');\" href='php/delete.php?id2={$row['id']}' class='btn btn-sm btn-danger text-white'>Delete</a></td>
-                            </tr>";
-                            };
-                            ?>
-                            
-                        </tbody>
-                    </table>
 
                 </div>
             </div>

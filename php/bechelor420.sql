@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 22, 2023 at 08:09 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Host: localhost:3306
+-- Generation Time: Aug 23, 2023 at 06:50 AM
+-- Server version: 5.7.23-23
+-- PHP Version: 8.1.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bechelor420`
+-- Database: `eveloqh8_bechelor420`
 --
 
 -- --------------------------------------------------------
@@ -31,15 +31,17 @@ CREATE TABLE `chats` (
   `id` int(111) NOT NULL,
   `users_id` int(11) NOT NULL,
   `massage` varchar(512) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `chats`
 --
 
 INSERT INTO `chats` (`id`, `users_id`, `massage`, `created_at`) VALUES
-(4, 17, 'Hey guys....!', '2023-08-22 18:07:58');
+(4, 17, 'Hey guys....!', '2023-08-22 18:07:58'),
+(5, 18, 'Hi', '2023-08-23 10:00:04'),
+(6, 19, 'Hello guys...', '2023-08-23 10:08:15');
 
 -- --------------------------------------------------------
 
@@ -53,19 +55,8 @@ CREATE TABLE `contacts` (
   `number` tinyint(1) NOT NULL,
   `subject` varchar(128) NOT NULL,
   `massage` varchar(512) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `contacts`
---
-
-INSERT INTO `contacts` (`id`, `name`, `number`, `subject`, `massage`, `created_at`) VALUES
-(1, 'প্রান্ত দেব নাথ', 127, '111', '111', '2023-08-21 12:08:50'),
-(2, 'প্রান্ত দেব নাথ', 127, 'sss', 'cc', '2023-08-21 12:11:42'),
-(3, 'প্রান্ত দেব নাথ', 127, 'ccc', 'ccc', '2023-08-21 12:12:25'),
-(4, 'প্রান্ত দেব নাথ', 127, '222', 'ss', '2023-08-21 12:16:51'),
-(5, 'প্রান্ত দেব নাথ', 127, 'ww', 'ww', '2023-08-21 12:23:04');
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -81,15 +72,17 @@ CREATE TABLE `users` (
   `title` varchar(512) NOT NULL,
   `image` varchar(512) NOT NULL,
   `role` set('admin','member','leader','unknown') NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `phone`, `password`, `title`, `image`, `role`, `created_at`) VALUES
-(17, 'Pranta Deb', '01825406189', '778890', 'Student Of Port City International University.', '64e4f6ee803cc.png', 'admin', '2023-08-22 17:57:02');
+(17, 'Pranta Deb', '01825406189', '778890', 'Student Of Port City International University.', '64e4f6ee803cc.png', 'admin', '2023-08-22 17:57:02'),
+(18, 'Hridoy khan', '01832148385', '32148385', 'PCIU', '64e5d7c210d6f.png', 'leader', '2023-08-23 09:56:18'),
+(19, 'MD. MAHASIN CHOWDHURY ', '01639229058', '229058', 'Jr.Executive Civil Engineering ', '64e5da47af6a9.png', 'leader', '2023-08-23 10:07:03');
 
 --
 -- Indexes for dumped tables
@@ -122,7 +115,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `contacts`
@@ -134,7 +127,7 @@ ALTER TABLE `contacts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

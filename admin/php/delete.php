@@ -19,6 +19,14 @@ if(isset($_GET['id'])){
     if($db->affected_rows){
         header("location: ../massage.php");
     }    
+}elseif(isset($_GET['id3'])){
+    require "../../php/dbConfig.php";
+    $id3 = $_GET['id3'];
+    $q3 = "delete from contacts where id='{$id3}' limit 1";
+    $db->query($q3);
+    if($db->affected_rows){
+        header("location: ../contactmail.php");
+    }    
 }else{
     header("HTTP/1.1 401 Unauthorized");
     exit;
